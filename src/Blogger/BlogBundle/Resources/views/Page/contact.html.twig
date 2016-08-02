@@ -7,11 +7,14 @@
     <header>
         <h1>Contact symblog</h1>
     </header>
-    {% if app.session.getFlashBag().get('blogger-notice') %}
-        <div class="blogger-notice">
-            {{ dump(app.session.getFlashBag().all()) }}
-        </div>
-    {% endif %}
+
+    {% for msg in app.session.flashBag.get('blogger-notice') %}
+        <div class="blogger-notice">{{ msg|e }}</div>
+    {% else %}
+        <div class="blogger-notice"><em>no msg found</em></div>
+    {% endfor %}
+
+
     <p>Want to contact symblog?</p>
 
         {{ form_start(form, {'attr': {'class': 'blogger'} }) }}

@@ -1,5 +1,6 @@
 {
     "name": "quentin/symtest.dev",
+    "description": "symblog v3",
     "license": "proprietary",
     "type": "project",
     "autoload": {

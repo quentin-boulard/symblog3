@@ -6,7 +6,6 @@ namespace Blogger\BlogBundle\Entity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 class Enquiry
 {
 

@@ -23,10 +23,6 @@
 composer.lock
 /vendor/
 
-# project IDE
-.project
-.idea/*
-
 # Assets and user uploads
 /web/bundles/*
 /web/uploads/

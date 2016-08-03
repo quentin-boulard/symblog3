@@ -19,3 +19,4 @@ The demo site for this project can be found at
  5. Create the database with 'php bin/console doctrine:database:create'
  6. Update schema with 'php bin/console doctrine:schema:create'
  7. Load fixtures with 'php bin/console doctrine:fixtures:load'
+ 

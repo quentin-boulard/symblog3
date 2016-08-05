@@ -13,7 +13,7 @@ matrix:
 
 mysql:
   database: travis_ci_symtest_test
-  username: root
+  username: test
   encoding: utf8
 
 

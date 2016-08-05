@@ -1,0 +1,48 @@
+language: php
+
+php:
+  - '5.5'
+  - '5.6'
+  - '7.0'
+  - hhvm
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+
+mysql:
+  database: travis_ci_symtest_test
+  username: root
+  encoding: utf8
+
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+env:
+  - SYMFONY_VERSION="3.1.*" DB=mysql
+  - SYMFONY_VERSION="dev-master" DB=mysql
+
+
+matrix:
+  include:
+    - php: 7.0
+      env: SYMFONY_VERSION=3.1.*
+    - php: 5.6
+      env: SYMFONY_VERSION=3.1.*
+    - php: 5.6
+      env: SYMFONY_VERSION=3.1.*@dev
+    - php: 5.5
+      env: COMPOSER_FLAGS="--prefer-lowest"
+
+
+
+before_install:
+  - composer self-update
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+
+install: composer update --prefer-source $COMPOSER_FLAGS
+
+script: phpunit --coverage-text

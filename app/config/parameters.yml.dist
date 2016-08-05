@@ -5,8 +5,8 @@ parameters:
     database_host:     127.0.0.1
     database_port:     3306
     database_name:     symblog3
-    database_user:     root
-    database_password: E@D3m.
+    database_user:     dev
+    database_password: 123456
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 

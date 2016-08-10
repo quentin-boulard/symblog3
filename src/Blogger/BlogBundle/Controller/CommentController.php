@@ -5,7 +5,7 @@ namespace Blogger\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Comment;
-use Blogger\BlogBundle\Form\CommentType;
+use Blogger\BlogBundle\Form\Type\CommentType;
 
 /**
  * Comment controller.
@@ -37,7 +37,6 @@ class CommentController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            // TODO: Persist the comment entity
 
             return $this->redirect($this->generateUrl('blogger_blog_blog_show', array(
                 'id' => $comment->getBlog()->getId())) .

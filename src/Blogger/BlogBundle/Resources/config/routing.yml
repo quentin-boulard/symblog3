@@ -2,7 +2,6 @@ blogger_blog_homepage:
     path:     /
     defaults: { _controller: BloggerBlogBundle:Page:index }
 
-
 blogger_blog_about:
     path:  /about
     defaults: { _controller: BloggerBlogBundle:Page:about }

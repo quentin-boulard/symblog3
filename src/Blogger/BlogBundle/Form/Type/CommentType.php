@@ -5,6 +5,9 @@ namespace Blogger\BlogBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Blogger\BlogBundle\Entity\Comment;
 
 
 class CommentType extends AbstractType
@@ -17,12 +20,11 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('user')
-            ->add('comment')
+            ->add('comment', TextareaType::class)
             ->add('approved')
-            ->add('created', 'datetime')
-            ->add('updated', 'datetime')
-            ->add('blog')
-        ;
+            ->add('created', DateTimeType::class)
+            ->add('updated', DateTimeType::class)
+            ->add('blog');
     }
     
     /**
@@ -30,9 +32,15 @@ class CommentType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Blogger\BlogBundle\Entity\Comment'
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => Comment::class,
+                'csrf_protection' => true,
+                'csrf_field_name' => '_token',
+                // a unique key to help generate the secret token
+                'csrf_token_id'   => 'comment_item',
+            ]
+        );
     }
 
     /**

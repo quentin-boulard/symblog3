@@ -3,22 +3,24 @@
 
 namespace Blogger\BlogBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Comment;
 use Blogger\BlogBundle\Form\Type\CommentType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Comment controller.
  */
 class CommentController extends Controller
 {
-    public function newAction($blog_id)
-    {
-        $blog = $this->getBlog($blog_id);
-
+    public function newAction(Request $request)
+    {   
+        $blog_id = $request->get('blog_id');
         $comment = new Comment();
+        $blog = $this->getBlog($blog_id);
         $comment->setBlog($blog);
-        $form   = $this->createForm(new CommentType(), $comment);
+
+        $form   = $this->createForm(CommentType::class, $comment);
 
         return $this->render('BloggerBlogBundle:Comment:form.html.twig', array(
             'comment' => $comment,
@@ -53,7 +55,7 @@ class CommentController extends Controller
     protected function getBlog($blog_id)
     {
         $em = $this->getDoctrine()
-                    ->getEntityManager();
+                    ->getManager();
 
         $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($blog_id);
 
